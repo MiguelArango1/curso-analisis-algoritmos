@@ -1,9 +1,8 @@
 """Generadores de lotes de registros para los escenarios de Tamiza.
 
-Los tres generadores producen n indices de riesgo enteros distintos
-(los valores 0..n-1), lo que garantiza que sean comparables entre
-escenarios de un mismo tamano. El orden objetivo de Tamiza es de
-mayor a menor indice de riesgo.
+Los tres generadores usan los valores 0..n-1 (todos distintos), asi los
+escenarios son comparables entre si para un mismo tamano. El orden que
+busca Tamiza es de mayor a menor indice de riesgo.
 """
 
 import random

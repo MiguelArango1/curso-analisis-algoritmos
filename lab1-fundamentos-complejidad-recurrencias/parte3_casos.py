@@ -1,9 +1,8 @@
 """Experimento de la Parte 3: peor caso, mejor caso y caso promedio.
 
-Ejecuta insertion_sort sobre los tres escenarios de Tamiza (A, B y C),
-para una serie de tamanos de entrada, midiendo tiempo de ejecucion y
-numero de comparaciones. Genera las graficas parte3_comparaciones.png
-y parte3_tiempo.png en graficas/.
+Corre insertion_sort con los tres escenarios de Tamiza (A, B y C) para
+varios tamanos de entrada y mide tiempo y comparaciones. Al final guarda
+parte3_comparaciones.png y parte3_tiempo.png en graficas/.
 """
 
 import statistics

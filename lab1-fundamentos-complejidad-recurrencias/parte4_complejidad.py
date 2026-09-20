@@ -1,8 +1,8 @@
 """Experimento de la Parte 4: validacion experimental de la complejidad.
 
-Mide el tiempo de ejecucion de insertion_sort y merge_sort sobre el
-escenario A (aleatorio) de Tamiza, para los mismos tamanos de entrada
-de la Parte 3, y genera parte4_tiempo.png en graficas/.
+Mide cuanto se demoran insertion_sort y merge_sort con el escenario A
+(aleatorio), usando los mismos tamanos de la Parte 3, y guarda la grafica
+parte4_tiempo.png en graficas/.
 """
 
 import statistics

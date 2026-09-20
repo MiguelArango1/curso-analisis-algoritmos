@@ -1,7 +1,7 @@
 """Algoritmos de ordenamiento instrumentados para el Laboratorio 1.
 
-Convencion de orden: ambos algoritmos ordenan de MAYOR a MENOR, que es el
-sentido que Tamiza necesita para su lista de llamadas (mayor riesgo primero).
+Los dos ordenan de MAYOR a MENOR, que es lo que necesita Tamiza para su
+lista de llamadas (primero los pacientes con mas riesgo).
 """
 
 
