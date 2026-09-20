@@ -50,6 +50,14 @@ def merge_sort(datos: list[int]) -> tuple[list[int], int]:
     comparaciones = 0
 
     def _dividir(sublista: list[int]) -> list[int]:
+        """Parte la lista en dos mitades, las ordena y las mezcla.
+
+        Args:
+            sublista: trozo de la lista original a ordenar.
+
+        Returns:
+            Una lista nueva con los elementos de sublista, de mayor a menor.
+        """
         nonlocal comparaciones
         if len(sublista) <= 1:
             return list(sublista)
@@ -59,6 +67,15 @@ def merge_sort(datos: list[int]) -> tuple[list[int], int]:
         return _mezclar(izquierda, derecha)
 
     def _mezclar(izquierda: list[int], derecha: list[int]) -> list[int]:
+        """Une dos listas ya ordenadas de mayor a menor en una sola.
+
+        Args:
+            izquierda: primera lista, ya ordenada.
+            derecha: segunda lista, ya ordenada.
+
+        Returns:
+            Una lista nueva con todos los elementos, ordenada.
+        """
         nonlocal comparaciones
         mezclada = []
         i = j = 0

@@ -7,6 +7,7 @@ parte4_tiempo.png en graficas/.
 
 import statistics
 import time
+from collections.abc import Callable
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -24,7 +25,9 @@ ALGORITMOS = {
 }
 
 
-def medir_algoritmo(algoritmo, n: int) -> float:
+def medir_algoritmo(
+    algoritmo: Callable[[list[int]], tuple[list[int], int]], n: int
+) -> float:
     """Mide el tiempo mediano de un algoritmo sobre el escenario A.
 
     Args:
@@ -77,6 +80,7 @@ def graficar_tiempo(resultados: dict) -> None:
 
 
 def main() -> None:
+    """Corre la comparacion y guarda la grafica de la Parte 4."""
     CARPETA_GRAFICAS.mkdir(exist_ok=True)
     resultados = ejecutar_experimento()
     graficar_tiempo(resultados)

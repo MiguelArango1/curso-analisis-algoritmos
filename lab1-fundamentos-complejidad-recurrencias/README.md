@@ -71,9 +71,9 @@ Medí siete tamaños (100, 200, 400, 800, 1600, 3200 y 6400) y cada tiempo es la
 
 | Escenario | Comparaciones | Tiempo (s) |
 |---|---|---|
-| A. Aleatorio | 10.276.753 | 1.0718 |
+| A. Aleatorio | 10.276.753 | 1.0775 |
 | B. Casi ordenado | 10.649 | 0.0012 |
-| C. Orden inverso | 20.476.800 | 2.1268 |
+| C. Orden inverso | 20.476.800 | 2.1466 |
 
 El C es el peor caso y el B el mejor, como predije. El A hace casi la mitad de comparaciones que el C en todos los tamaños, o sea que se parece al promedio. Además las 20.476.800 del C son exactamente `n(n-1)/2`.
 
@@ -138,11 +138,11 @@ Tiempos sobre el escenario A (mediana de 3 corridas), con los mismos siete tama�
 
 | n | Insertion sort (s) | Merge sort (s) |
 |---|---|---|
-| 100 | 0.000251 | 0.000167 |
-| 1.600 | 0.066490 | 0.003904 |
-| 6.400 | 1.070307 | 0.017794 |
+| 100 | 0.000243 | 0.000215 |
+| 1.600 | 0.066148 | 0.003811 |
+| 6.400 | 1.083779 | 0.017431 |
 
-La curva de insertion sort se dispara: con n 64 veces mayor (de 100 a 6.400) el tiempo se multiplica por casi 4.300, cerca de 64² = 4.096. La de merge sort casi no se despega del eje: solo se multiplica por unas 107, que va con n log n. Desde n ≈ 800 la brecha ya se ve a simple vista. Para Tamiza es mejor merge sort.
+La curva de insertion sort se dispara: con n 64 veces mayor (de 100 a 6.400) el tiempo se multiplica por unas 4.460, cerca de 64² = 4.096. La de merge sort casi no se despega del eje: solo se multiplica por unas 81, mucho más cerca de n log n (unas 122 veces) que de n² (4.096). Desde n ≈ 800 la brecha ya se ve a simple vista. Para Tamiza es mejor merge sort.
 
 Coincide con 4.1 (Θ(n²) contra Θ(n log n)). Lo raro es que merge sort suele arrancar más lento con tamaños chicos por las llamadas recursivas y las listas nuevas, y aquí ya gana desde n = 100. Creo que es porque insertion sort ya hace 2.542 comparaciones ahí y su costo cuadrático supera ese costo fijo desde muy temprano.
 
@@ -152,13 +152,13 @@ Para el equipo de ingeniería de la Plataforma Tamiza:
 
 Recomiendo reemplazar insertion sort por merge sort en todo el proceso nocturno, sin importar el canal de origen.
 
-Como el canal puede cambiar sin aviso y no conviene mantener tres implementaciones, escogí el algoritmo cuyo tiempo no depende de cómo llegue el lote. Insertion sort solo es rápido con datos casi ordenados (escenario B); si cambia el flujo de reproceso o el sistema legado manda todo al revés (C), el proceso se cae. Merge sort hace Θ(n log n) llegue como llegue el lote: en mis pruebas ordenó 6.400 registros aleatorios en 0,0178 s. Además con una sola implementación el equipo mantiene y prueba un solo código, en vez de tres ramas según el canal y de tener que detectar cuál está llegando.
+Como el canal puede cambiar sin aviso y no conviene mantener tres implementaciones, escogí el algoritmo cuyo tiempo no depende de cómo llegue el lote. Insertion sort solo es rápido con datos casi ordenados (escenario B); si cambia el flujo de reproceso o el sistema legado manda todo al revés (C), el proceso se cae. Merge sort hace Θ(n log n) llegue como llegue el lote: en mis pruebas ordenó 6.400 registros aleatorios en 0,0174 s. Además con una sola implementación el equipo mantiene y prueba un solo código, en vez de tres ramas según el canal y de tener que detectar cuál está llegando.
 
 ¿Cabe en las cuatro horas con 1.200.000 registros? Es una estimación, no una medición: no corrí el algoritmo con ese volumen, extrapolo desde n = 6.400 con la forma de cada curva de la gráfica de la Parte 4. Con n multiplicado por 187,5:
 
-- Insertion sort es cuadrático, el tiempo se multiplica por 187,5² ≈ 35.156. Desde el peor caso medido (2,1268 s en C) da unas 20,8 horas, y desde el aleatorio (1,0718 s) unas 10,5. Ambas pasan de las 4 horas, lo que cuadra con las tres veces que el proceso no terminó.
-- Merge sort es n log n, el tiempo se multiplica por 187,5 × (log2(1.200.000)/log2(6.400)) ≈ 299. Desde 0,0178 s da unos 5,3 segundos. Aunque en la realidad fuera 10 veces peor por memoria y hardware, sería cerca de un minuto.
+- Insertion sort es cuadrático, el tiempo se multiplica por 187,5² ≈ 35.156. Desde el peor caso medido (2,1466 s en C) da unas 21 horas, y desde el aleatorio (1,0775 s) unas 10,5. Ambas pasan de las 4 horas, lo que cuadra con las tres veces que el proceso no terminó.
+- Merge sort es n log n, el tiempo se multiplica por 187,5 × (log2(1.200.000)/log2(6.400)) ≈ 299. Desde 0,0174 s da unos 5,2 segundos. Aunque en la realidad fuera 10 veces peor por memoria y hardware, sería cerca de un minuto.
 
-Sobre el servidor del doble de velocidad: no lo compraría. Como mucho divide el tiempo entre dos, y las 20,8 horas quedarían en unas 10,4, más del doble de la ventana. En la gráfica de la Parte 4, con n = 6.400, insertion sort tarda 1,07 s y merge sort 0,018 s en la misma máquina, unas 60 veces menos sin comprar nada.
+Sobre el servidor del doble de velocidad: no lo compraría. Como mucho divide el tiempo entre dos, y las 21 horas quedarían en unas 10,5, más del doble de la ventana. En la gráfica de la Parte 4, con n = 6.400, insertion sort tarda 1,08 s y merge sort 0,017 s en la misma máquina, unas 60 veces menos sin comprar nada.
 
 Aparte del tiempo, merge sort usa memoria extra, del orden de Θ(n), por las listas temporales de la mezcla; con 1.200.000 enteros es una cantidad razonable y predecible, mucho más barata que fallar la ventana. Los dos son estables, así que los pacientes con el mismo índice de riesgo mantienen el orden en que llegaron. Y insertion sort solo sirve mientras el reproceso siga entregando lotes casi ordenados, dependencia que se quita migrando a merge sort.

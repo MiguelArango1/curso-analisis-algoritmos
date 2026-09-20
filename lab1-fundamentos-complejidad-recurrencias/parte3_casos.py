@@ -7,6 +7,7 @@ parte3_comparaciones.png y parte3_tiempo.png en graficas/.
 
 import statistics
 import time
+from collections.abc import Callable
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -25,7 +26,9 @@ ESCENARIOS = {
 }
 
 
-def medir_escenario(generador, n: int) -> tuple[float, int]:
+def medir_escenario(
+    generador: Callable[[int], list[int]], n: int
+) -> tuple[float, int]:
     """Mide el tiempo mediano y las comparaciones de insertion_sort.
 
     Args:
@@ -99,6 +102,7 @@ def graficar_tiempo(resultados: dict) -> None:
 
 
 def main() -> None:
+    """Corre el experimento y guarda las dos graficas de la Parte 3."""
     CARPETA_GRAFICAS.mkdir(exist_ok=True)
     resultados = ejecutar_experimento()
     graficar_comparaciones(resultados)
