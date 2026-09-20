@@ -9,7 +9,7 @@ Desde la raíz del repositorio (`curso-analisis-algoritmos/`):
 ```bash
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-cd lab1-fundamentos-complejidad-recurrencias
+cd laboratorios/lab1-fundamentos-complejidad-recurrencias
 ```
 
 Y para correr cada parte:
