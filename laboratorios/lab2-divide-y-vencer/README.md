@@ -1,6 +1,6 @@
 # Laboratorio evaluativo 02: Dividir y vencer
 
-**Autor:** Miguel Arango (miguelarangop36@gmail.com)
+**Autor:** Miguel Angel Arango Puerta (miguelarangop36@gmail.com)
 
 ## Cómo reproducir el experimento
 
