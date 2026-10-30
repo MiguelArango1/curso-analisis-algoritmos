@@ -67,7 +67,7 @@ Muy buen trabajo: un informe ordenado, con código correcto y conclusiones apoya
 - Los commits del laboratorio son descriptivos, pero fueron hechos todos en el mismo minuto; no muestran el avance real del trabajo. Haga commits a medida que avanza.
 
 ## ¿El código funciona?
-Sí. Ambos scripts corren sin errores y generan las gráficas. Los dos algoritmos ordenaron bien en todas mis pruebas, incluidas listas vacías y de un elemento.
+Sí. Ambos scripts corren sin errores y generan las gráficas. Los dos algoritmos ordenaron bien, incluidas listas vacías y de un elemento.
 
 ## Para el próximo laboratorio
 - Haga commits pequeños mientras trabaja, no todos al final.
